@@ -2,23 +2,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
-
        xmlns:aop="http://www.springframework.org/schema/aop"
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop.xsd"
 >
-        <!-- AOP Added For VISTJETFUTURE-39223 to find the user with empty passw -->
+    <!-- AOP Added For VISTJETFUTURE-39223 to find the user with empty passw -->
 
-        <!-- Added For VISTJETFUTURE-39223 to find the user with empty passw -->
-        <bean id="dTBean" class="com.example.demo.DemoApplicationTests"/>
-        <bean id="tesBean" class="com.example.demo.Tes1"/>
-        <bean id="aspectBean" class="com.example.aspects.AspectToLogAdditionInfo" init-method="logInit"/>
-        <aop:config>
-                <aop:aspect ref="aspectBean">
-                        <aop:pointcut id="emptyPassw" expression="execution (* com.example.demo.Tes1.getSmth(..))"/>
-                        <aop:before method="beforeCheck" pointcut-ref="emptyPassw"/>
-                </aop:aspect>
-        </aop:config>
+    <!-- Added For VISTJETFUTURE-39223 to find the user with empty passw -->
+    <bean id="dTBean" class="com.example.demo.DemoApplication"/>
+    <bean id="tesBean" class="com.example.demo.Tes1"/>
+    <bean id="aspectBean" class="com.example.aspects.AspectToLogAdditionInfo" init-method="logInit"/>
+    <aop:config>
+        <aop:aspect ref="aspectBean">
+            <aop:pointcut id="emptyPassw" expression="execution (* com.example.demo.Tes1.getSmth(..))"/>
+            <aop:before method="beforeCheck" pointcut-ref="emptyPassw"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
